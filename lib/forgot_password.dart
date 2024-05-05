@@ -1,3 +1,6 @@
+//TO DO configurasi class dan logika script backend
+
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
