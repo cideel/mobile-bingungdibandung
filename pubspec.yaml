@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^4.0.1
+  get: ^4.6.6
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -70,6 +72,22 @@ flutter:
     - assets/twitter.png
     - assets/splashscreen.png
     - assets/splashs.png
+    - assets/iklan1.png
+    - assets/icon-wisata-alam.png
+    - assets/icon-wisata-buatan.png
+    - assets/icon-wisata-kuliner.png
+    - assets/icon-wisata-lainnya.png
+    - assets/ex-tempat-wisata-1.png
+    - assets/ex-tempat-wisata-2.png
+    - assets/ex-tempat-wisata-3.png
+    - assets/ex-tempat-wisata-4.png
+    - assets/rabbit-town.png
+    - assets/chat-icon.png
+    - assets/star-icon.png
+    - assets/location-icon.png
+    - assets/ranca-upas.png
+    - assets/grafika-cikole.png
+    - assets/little-korea.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

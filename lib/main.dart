@@ -1,3 +1,4 @@
+import 'package:bingung_di_bandung/Home/home.dart';
 import 'package:bingung_di_bandung/features/Login/presentation/pages/login.dart';
 import 'package:bingung_di_bandung/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class init extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Splash_Screen(),
+      home: Home(),
     );
   }
 }

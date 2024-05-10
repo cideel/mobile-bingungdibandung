@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bingung_di_bandung/Home/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bingung_di_bandung/features/Login/presentation/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,10 @@ class _Splash_ScreenState extends State<Splash_Screen> {
     Timer(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Login()),
+        MaterialPageRoute(builder: (context) => Home()),
       );
     });
-  }
+  } 
   
   @override
   Widget build(BuildContext context) {
