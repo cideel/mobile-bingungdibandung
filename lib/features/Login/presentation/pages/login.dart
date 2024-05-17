@@ -1,10 +1,11 @@
+import 'package:bingung_di_bandung/routes/page_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +149,10 @@ class _buttonSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: null,
+      onPressed: () {
+        Get.toNamed(MyPage.navbar,);
+        
+      },
       child: Text(
         "Sign In",
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

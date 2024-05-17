@@ -1,38 +1,22 @@
+import 'package:bingung_di_bandung/routes/page_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Home extends StatefulWidget {
-  @override
-  State<Home> createState() => _HomeState();
-}
 
-class _HomeState extends State<Home> {
-  int _currentIndex = 0;
+
+class Home extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        unselectedItemColor: Colors.blue,
-        selectedItemColor: Colors.blue,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.blue,), label: "Beranda",),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_border),label: "Favorit"),
-          BottomNavigationBarItem(icon: Icon(Icons.card_travel_outlined),label:"Explore!"),
-          BottomNavigationBarItem(icon: Icon(Icons.assignment),label: "Riwayat"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_pin_circle_outlined),label: "Profil")
-        ],
-      ),
+    return Scaffold(    
+          
       body: ListView(
+        
         children: [
+          
           Stack(
             children: [
               Image.asset("assets/iklan1.png"),
