@@ -1,12 +1,12 @@
+import 'package:bingung_di_bandung/Sign%20Up/signUp.dart';
 import 'package:bingung_di_bandung/routes/page_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:flutter/gestures.dart';
 
 class Login extends StatelessWidget {
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,9 +90,17 @@ class Login extends StatelessWidget {
                               color: Color(0xff707B81), fontSize: 14)),
                       TextSpan(
                           text: "Sign Up",
-                          style:
-                              TextStyle(fontSize: 14, color: Color(0xff0D6EFD)))
+                          style: TextStyle(
+                              fontSize: 14, color: Color(0xff0D6EFD)),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = (){
+                              print("Clicked");
+                              Get.toNamed(MyPage.signUp);
+                            }  ),
+                              
+                              
                     ])),
+                    
                 SizedBox(
                   height: 20,
                 ),
@@ -150,8 +158,9 @@ class _buttonSignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Get.toNamed(MyPage.navbar,);
-        
+        Get.toNamed(
+          MyPage.navbar,
+        );
       },
       child: Text(
         "Sign In",

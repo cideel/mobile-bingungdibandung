@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "150788122768",
+    "project_id": "bingung-di-bandung-db",
+    "storage_bucket": "bingung-di-bandung-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150788122768:android:221921825e913343819015",
+        "android_client_info": {
+          "package_name": "com.example.bingung_di_bandung"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBInaigb27QvDY2w-NaiSRHmIi2LZS6NM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

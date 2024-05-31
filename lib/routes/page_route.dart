@@ -4,6 +4,8 @@ import 'package:bingung_di_bandung/Favorite/favorite.dart';
 import 'package:bingung_di_bandung/History/history.dart';
 import 'package:bingung_di_bandung/Home/home.dart';
 import 'package:bingung_di_bandung/Profile/profile.dart';
+import 'package:bingung_di_bandung/SearchPage/search.dart';
+import 'package:bingung_di_bandung/Sign%20Up/signUp.dart';
 import 'package:bingung_di_bandung/features/Login/presentation/pages/login.dart';
 import 'package:bingung_di_bandung/splash_screen.dart';
 import 'package:get/get.dart';
@@ -17,7 +19,9 @@ class MyPage{
     GetPage(name: history, page: ()=>History()),
     GetPage(name: favorit, page: ()=>Favorite()),
     GetPage(name: explore, page: ()=>Explore()),
-    GetPage(name: navbar, page: ()=> NavBarBot())
+    GetPage(name: navbar, page: ()=> NavBarBot()),
+    GetPage(name: signUp, page: ()=>SignUp()),
+    GetPage(name: searchPage, page: ()=>SearchPage())
 
     
 
@@ -31,6 +35,9 @@ class MyPage{
   static getfavorit() => Favorite();
   static getexplore() => Explore();
   static getsplash() => Splash_Screen();
+  static getSign() => SignUp();
+  static getSearch() => SearchPage();
+
 
   static String splashScren = '/splashCreen';
   static String login = '/loginPage';
@@ -39,5 +46,8 @@ class MyPage{
   static String history = '/historyPage';
   static String favorit = '/favoritePage';
   static String explore = '/explorePage';
+  static String signUp =  '/signPage';
+  static String searchPage = '/searchPage';
   static String navbar = '/';
+
 }

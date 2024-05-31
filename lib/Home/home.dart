@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/gestures.dart';
+
 
 
 
@@ -537,6 +539,7 @@ class _searchbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: Stack(
         alignment: Alignment.centerLeft,
         children: [
@@ -545,14 +548,22 @@ class _searchbar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.search),
+                IconButton(onPressed: (){
+                  Get.toNamed(MyPage.searchPage);
+                }, icon: Icon(Icons.search)),
                 SizedBox(
                   width: 4,
                 ),
-                Text(
-                  "Mau jalan kemana hari ini?",
-                  style: TextStyle(fontWeight: FontWeight.w300),
-                )
+                RichText(text: TextSpan(
+                  text: "Mau jalan kemana hari ini?",
+                  style: TextStyle(fontWeight: FontWeight.w200,color: Colors.black),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = (){
+                      Get.toNamed(MyPage.searchPage);
+                      print("search coy");
+                    }
+                ))
+                
               ],
             ),
           )
