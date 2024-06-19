@@ -1,4 +1,5 @@
 import 'package:bingung_di_bandung/Sign%20Up/signUp.dart';
+import 'package:bingung_di_bandung/controller/autController.dart';
 import 'package:bingung_di_bandung/routes/page_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,10 @@ import 'package:get/get.dart';
 import 'package:flutter/gestures.dart';
 
 class Login extends StatelessWidget {
+  final AuthController authController = Get.put(AuthController());
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +41,7 @@ class Login extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 29),
                   child: TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                         labelText: "Email",
                         prefixIcon: Icon(Icons.person),
@@ -50,6 +56,7 @@ class Login extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 29),
                   child: TextFormField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         labelText: "Password",
@@ -76,7 +83,45 @@ class Login extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                _buttonSignIn(),
+                Obx(() {
+                  return authController.isLoading.value
+                      ? CircularProgressIndicator()
+                      : ElevatedButton(
+                          onPressed: () {
+                            if (emailController.text.trim().isEmpty ||
+                                passwordController.text.trim().isEmpty) {
+                              Get.snackbar(
+                                'Error',
+                                'Email and password are required.',
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                              return;
+                            }
+                            authController.login(
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                            );
+                          },
+                          child: Text(
+                            "Sign In",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            minimumSize:
+                                MaterialStateProperty.all(Size(360, 56)),
+                            backgroundColor:
+                                MaterialStatePropertyAll(Color(0xff0D6EFD)),
+                          ),
+                        );
+                }),
                 SizedBox(
                   height: 40,
                 ),
@@ -85,22 +130,19 @@ class Login extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                         children: [
                       TextSpan(
-                          text: "Dont have an account  ",
+                          text: "Don't have an account  ",
                           style: TextStyle(
                               color: Color(0xff707B81), fontSize: 14)),
                       TextSpan(
                           text: "Sign Up",
-                          style: TextStyle(
-                              fontSize: 14, color: Color(0xff0D6EFD)),
+                          style:
+                              TextStyle(fontSize: 14, color: Color(0xff0D6EFD)),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = (){
+                            ..onTap = () {
                               print("Clicked");
                               Get.toNamed(MyPage.signUp);
-                            }  ),
-                              
-                              
+                            }),
                     ])),
-                    
                 SizedBox(
                   height: 20,
                 ),
@@ -199,7 +241,7 @@ class _pleaseText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Please sign in to continue our app",
+      "Please sign in to continue to our app",
       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w200),
     );
   }

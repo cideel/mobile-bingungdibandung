@@ -23,7 +23,6 @@ class NavBarBot extends StatelessWidget {
             children:  [
               Home(),
               Favorite(),
-              Explore(),
               History(),
               Profile()
             ],
@@ -40,7 +39,6 @@ class NavBarBot extends StatelessWidget {
             items: [
               _bottomBarItem(Icons.home, "Beranda"),
               _bottomBarItem(Icons.favorite_border, "Favorit"),
-              _bottomBarItem(Icons.card_travel, "Explore!"),
               _bottomBarItem(Icons.assignment, "Riwayat"),
               _bottomBarItem(Icons.person_pin_circle, "Profil")
             ]),

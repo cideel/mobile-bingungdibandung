@@ -1,301 +1,133 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:bingung_di_bandung/controller/searchController.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:bingung_di_bandung/Model/tempatWisata.dart';
+import 'package:bingung_di_bandung/routes/page_route.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
+  final Search searchController = Get.put(Search());
+  final TextEditingController searchTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawerEnableOpenDragGesture: true,
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 150,
-              child: Center(
-                  child: Text(
-                "Filter Berdasarkan",
-                style: GoogleFonts.inter(
-                    fontSize: 17, fontWeight: FontWeight.bold),
-              )),
-              decoration: BoxDecoration(color: Colors.white),
-            ),
-            Divider(
-              height: 0,
-              thickness: 2,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Kategori",
-                    style: GoogleFonts.inter(
-                        fontSize: 17, fontWeight: FontWeight.bold),
-                  )),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  _drawerKategoriButton(
-                    name: "Pantai",
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  _drawerKategoriButton(
-                    name: "Gunung",
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  _drawerKategoriButton(
-                    name: "Museum",
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  _drawerKategoriButton(
-                    name: "Kuliner",
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 56,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Rekomendasi",
-                    style: GoogleFonts.inter(
-                        fontSize: 17, fontWeight: FontWeight.bold),
-                  )),
-            ),
-            SizedBox(height: 10,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  _drawerKategoriButton(
-                    name: "Rating",
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  _drawerKategoriButton(
-                    name: "Trending",
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 8,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  _drawerKategoriButton(
-                    name: "Terbaru",
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  _drawerKategoriButton(
-                    name: "Terkait",
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
       appBar: AppBar(
         title: Text(
-          "Pencarian",
-          style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.bold),
+          "Cari Tempat Wisata",
+          style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        shadowColor: Colors.grey,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 24,
-            ),
-            _searchBarHomePage(),
-            SizedBox(
-              height: 40,
-            ),
-            Text("Kategori Pencarian",
-                style: GoogleFonts.roboto(
-                    fontSize: 17, fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 15,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Gunung",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Pantai",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Hutan",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Makanan",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Mall",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Samudra",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Bola",
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  _searchLabel(
-                    pic: "assets/search-gunung.png",
-                    name: "Game",
-                  ),
-                ],
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              controller: searchTextController,
+              decoration: InputDecoration(
+                hintText: 'Cari tempat wisata...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                prefixIcon: Icon(Icons.search),
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _drawerKategoriButton extends StatelessWidget {
-  const _drawerKategoriButton({
-    required this.name,
-    super.key,
-  });
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Text(name),
-      style: ButtonStyle(
-          foregroundColor: MaterialStatePropertyAll(Colors.black),
-          minimumSize: MaterialStateProperty.all(
-            Size(122, 32),
+              onChanged: (value) {
+                searchController.searchPlaces(value);
+              },
+            ),
           ),
-          backgroundColor: MaterialStatePropertyAll(Colors.white54),
-          textStyle: MaterialStatePropertyAll(TextStyle(color: Colors.black)),
-          shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
-    );
-  }
-}
+          Expanded(
+            child: Obx(() {
+              if (searchController.searchResults.isEmpty) {
+                return Center(child: Text("Tidak ada hasil pencarian"));
+              } else {
+                return ListView.builder(
+                  itemCount: searchController.searchResults.length,
+                  itemBuilder: (context, index) {
+                    final place = searchController.searchResults[index];
+                    final imageUrl = place['fotoUrls'] != null && place['fotoUrls'].isNotEmpty
+                        ? place['fotoUrls'][0]
+                        : 'https://via.placeholder.com/150';
 
-class _searchLabel extends StatelessWidget {
-  const _searchLabel({
-    required this.pic,
-    required this.name,
-    super.key,
-  });
-
-  final String pic;
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 60,
-          width: 60,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(image: AssetImage(pic))),
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        Text(
-          name,
-          style: GoogleFonts.roboto(fontSize: 14),
-        )
-      ],
-    );
-  }
-}
-
-class _searchBarHomePage extends StatelessWidget {
-  const _searchBarHomePage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      //LOGIC SEARCH BAR COY
-
-      decoration: InputDecoration(
-          suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.clear)),
-          prefixIcon: Icon(Icons.search),
-          labelText: "Mau jalan kemana hari ini?",
-          labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w300),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                    return Card(
+                      margin: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 5,
+                      child: ListTile(
+                        contentPadding: EdgeInsets.all(10),
+                        leading: CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          imageBuilder: (context, imageProvider) => Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
+                        title: Text(
+                          place['nama'],
+                          style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              place['alamat'],
+                              style: GoogleFonts.inter(color: Colors.grey),
+                            ),
+                            SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Icon(Icons.trending_up, color: Colors.green, size: 20),
+                                SizedBox(width: 5),
+                                Text(
+                                  "Uptrend: ${place['uptrend']}",
+                                  style: GoogleFonts.inter(),
+                                ),
+                                SizedBox(width: 10),
+                                Icon(Icons.star, color: Colors.yellow, size: 20),
+                                SizedBox(width: 5),
+                                Text(
+                                  "Rating: ${place['rating']}",
+                                  style: GoogleFonts.inter(),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          final tempatWisata = TempatWisata(
+                            id: place['id'],
+                            nama: place['nama'],
+                            alamat: place['alamat'],
+                            deskripsi: place['deskripsi'],
+                            fotoUrls: List<String>.from(place['fotoUrls']),
+                            rating: place['rating'].toDouble(),
+                            uptrend: place['uptrend'],
+                            label: place['label'],
+                            link: place['link'],
+                          );
+                          Get.toNamed(MyPage.detailPlace, arguments: tempatWisata);
+                        },
+                      ),
+                    );
+                  },
+                );
+              }
+            }),
+          ),
+        ],
+      ),
     );
   }
 }

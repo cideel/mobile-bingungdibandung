@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '150788122768',
     projectId: 'bingung-di-bandung-db',
     authDomain: 'bingung-di-bandung-db.firebaseapp.com',
+    databaseURL: 'https://bingung-di-bandung-db-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'bingung-di-bandung-db.appspot.com',
   );
 
@@ -60,6 +61,7 @@ class DefaultFirebaseOptions {
     appId: '1:150788122768:android:221921825e913343819015',
     messagingSenderId: '150788122768',
     projectId: 'bingung-di-bandung-db',
+    databaseURL: 'https://bingung-di-bandung-db-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'bingung-di-bandung-db.appspot.com',
   );
 
@@ -68,7 +70,9 @@ class DefaultFirebaseOptions {
     appId: '1:150788122768:ios:38345bf619b5e37f819015',
     messagingSenderId: '150788122768',
     projectId: 'bingung-di-bandung-db',
+    databaseURL: 'https://bingung-di-bandung-db-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'bingung-di-bandung-db.appspot.com',
     iosBundleId: 'com.example.bingungDiBandung',
   );
+
 }

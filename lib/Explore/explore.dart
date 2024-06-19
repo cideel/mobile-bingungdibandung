@@ -1,3 +1,4 @@
+import 'package:bingung_di_bandung/Explore/counter_contoller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +10,10 @@ class Explore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Text("explore"),
+      ),
+    );
   }
 }

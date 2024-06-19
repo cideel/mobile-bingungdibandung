@@ -1,3 +1,4 @@
+import 'package:bingung_di_bandung/controller/autController.dart';
 import 'package:bingung_di_bandung/routes/page_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/gestures.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  final AuthController authController = Get.put(AuthController());
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,7 @@ class SignUp extends StatelessWidget {
                   height: 21,
                 ),
                 TextField(
+                  controller: nameController,
                   // textfield username logic
                   decoration: InputDecoration(
                       labelText: "Username",
@@ -52,6 +57,7 @@ class SignUp extends StatelessWidget {
                   height: 25,
                 ),
                 TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                       labelText: "Email",
                       prefixIcon: Icon(Icons.email_rounded),
@@ -62,6 +68,7 @@ class SignUp extends StatelessWidget {
                   height: 25,
                 ),
                 TextField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                       labelText: "Password",
@@ -84,23 +91,51 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   height: 25,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.offNamed(MyPage.navbar);
-                  },
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                      minimumSize: MaterialStateProperty.all(Size(380, 56)),
-                      backgroundColor:
-                          MaterialStatePropertyAll(Color(0xff0D6EFD))),
-                ),
-                SizedBox(height: 40,),
+                Obx(() {
+                  return authController.isLoading.value
+                      ? CircularProgressIndicator()
+                      : ElevatedButton(
+                          onPressed: () {
+                            if (emailController.text.trim().isEmpty ||
+                                passwordController.text.trim().isEmpty ||
+                                nameController.text.trim().isEmpty) {
+                              Get.snackbar(
+                                'Error',
+                                'All fields are required.',
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                              return;
+                            }
 
+                            authController
+                                .register(
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                              nameController.text.trim(),
+                            )
+                                .then((_) {
+                              if (!authController.isLoading.value) {
+                                Get.offNamed(MyPage.navbar);
+                              }
+                            });
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8))),
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(380, 56)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff0D6EFD))),
+                        );
+                }),
+                SizedBox(
+                  height: 40,
+                ),
                 RichText(
                     text: TextSpan(
                         style: TextStyle(color: Colors.black),
@@ -110,32 +145,51 @@ class SignUp extends StatelessWidget {
                           style: TextStyle(
                               color: Color(0xff707B81), fontSize: 14)),
                       TextSpan(
-                          text: "Sign In",
-                          recognizer: TapGestureRecognizer()
-                          ..onTap = (){
+                        text: "Sign In",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
                             Get.offNamed(MyPage.login);
                           },
-                          style: TextStyle(
-                              fontSize: 14, color: Color(0xff0D6EFD)),
-                           ),
-                              
-                              
+                        style:
+                            TextStyle(fontSize: 14, color: Color(0xff0D6EFD)),
+                      ),
                     ])),
-                SizedBox(height: 20,),
-                Text("Or connect",style: TextStyle(fontSize: 14,color: Color(0xff707B81)),),
-                SizedBox(height: 36,),
-                Row(mainAxisAlignment: MainAxisAlignment.center,
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Or connect",
+                  style: TextStyle(fontSize: 14, color: Color(0xff707B81)),
+                ),
+                SizedBox(
+                  height: 36,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  Image.asset('assets/facebook.png',height: 44,width: 44,),
-                  SizedBox(width: 20,),
-                  Image.asset('assets/instagram.png',height: 44,width: 44,),
-                  SizedBox(width: 20,),
-                  Image.asset('assets/twitter.png',height: 44,width: 44,)
-
-
-
-                ],)
-                
+                    Image.asset(
+                      'assets/facebook.png',
+                      height: 44,
+                      width: 44,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Image.asset(
+                      'assets/instagram.png',
+                      height: 44,
+                      width: 44,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Image.asset(
+                      'assets/twitter.png',
+                      height: 44,
+                      width: 44,
+                    )
+                  ],
+                )
               ],
             )),
           )
