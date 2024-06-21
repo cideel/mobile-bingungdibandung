@@ -4,7 +4,7 @@
 
 ## Overview
 
-Bingung di Bandung" is a mobile application that aims to
+"Bingung di Bandung" is a mobile application that aims to
 provide recommendations for tourist attractions and culinary in Bandung.
 This application will provide accurate and reliable information, and allow users to participate in the data collection process.
 allow users to participate in the process of data collection and community
