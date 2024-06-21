@@ -1,16 +1,13 @@
-# bingung_di_bandung
+# Bingung di Bandung
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Overview
 
-A few resources to get you started if this is your first Flutter project:
+Bingung di Bandung" is a mobile application that aims to
+provide recommendations for tourist attractions and culinary in Bandung.
+This application will provide accurate and reliable information, and allow users to participate in the data collection process.
+allow users to participate in the process of data collection and community
+community building. Key features include a recommendation system, verification of
+verification of places by users, a randomize feature to provide travel inspiration, as well as an interactive
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
